@@ -1,5 +1,4 @@
 const path = require('path');
-const isFunction = require('lodash.isfunction');
 
 /** CLI Arguments
  *
@@ -207,7 +206,7 @@ export const getMergedOptions = function getMergedOptions(userOptions) {
   Object.keys(yargsOptions).forEach(optKey => {
     const yargOpt = yargsOptions[optKey];
     const aliases = yargOpt.alias;
-    const defaultVal = isFunction(yargOpt.default)
+    const defaultVal = typeof yargOpt.default === "function"
       ? yargOpt.default()
       : yargOpt.default;
     const isBool = yargOpt.boolean;
